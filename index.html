@@ -1,101 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8 />
-<title>Interrail 2014</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' rel='stylesheet' />
+  <head>
+    <meta charset=utf-8 />
+    <title>Interrail 2014</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="main-style.css" />
+    <link rel="stylesheet" href="popup-style.css" />
+  </head>
 
+  <body>
 
+    <div id='map'></div>
 
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
-<link rel="stylesheet" href="popup-style.css" />
+    <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+    <script type="text/javascript" src="geo.js"></script>
+    <script type="text/javascript" src="access-token.js"></script>
 
-</head>
+    <script>
+        L.mapbox.accessToken = token;
+        var map = L.mapbox.map('map', 'manutero.jjgomcin');
 
-<body>
+        // Add custom popup html to each marker.
+        var myLayer = L.mapbox.featureLayer().addTo(map);
+        myLayer.on('layeradd', function(e) {
+            var marker = e.layer;
+            var feature = marker.feature;
+            var images = feature.properties.images
+            var slideshowContent = '';
 
+            for(var i = 0; i < images.length; i++) {
+                var img = images[i];
 
-<div id='map'></div>
-<iframe width='100%' height='500px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/manutero.jjgomcin/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoibWFudXRlcm8iLCJhIjoieDJNdHdBNCJ9.BpGACwBlbWUPg62bNw9Qqg'></iframe>
+                slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+                                      '<img src="' + img[0] + '" />' +
+                                      '<div class="caption">' + img[1] + '</div>' +
+                                    '</div>';
+            }
 
-<!-- jQuery is required for this example. -->
-<script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
-<script type="text/javascript" src="geo.js"></script>
-<script>
-// Provide your access token
-L.mapbox.accessToken = 'pk.eyJ1IjoibWFudXRlcm8iLCJhIjoieDJNdHdBNCJ9.BpGACwBlbWUPg62bNw9Qqg';
-var map = L.mapbox.map('map', 'manutero.jjgomcin');
+            // Create custom popup content
+            var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+                                    '<h2>' + feature.properties.title + '</h2>' +
+                                    '<div class="slideshow">' +
+                                        slideshowContent +
+                                    '</div>' +
+                                    '<div class="cycle">' +
+                                        '<a href="#" class="prev">&laquo; Previous</a>' +
+                                        '<a href="#" class="next">Next &raquo;</a>' +
+                                    '</div>'
+                                '</div>';
 
-var myLayer = L.mapbox.featureLayer().addTo(map);
+            // http://leafletjs.com/reference.html#popup
+            marker.bindPopup(popupContent,{
+                closeButton: false,
+                minWidth: 320
+            });
+        });
 
-var geoJson = getGeoJson();
+        // Add features to the map
+        myLayer.setGeoJSON(geoJson);
 
-// Add custom popup html to each marker.
-myLayer.on('layeradd', function(e) {
-    var marker = e.layer;
-    var feature = marker.feature;
-    var images = feature.properties.images
-    var slideshowContent = '';
+        $('#map').on('click', '.popup .cycle a', function() {
+            var $slideshow = $('.slideshow'),
+                $newSlide;
 
-    for(var i = 0; i < images.length; i++) {
-        var img = images[i];
+            if ($(this).hasClass('prev')) {
+                $newSlide = $slideshow.find('.active').prev();
+                if ($newSlide.index() < 0) {
+                    $newSlide = $('.image').last();
+                }
+            } else {
+                $newSlide = $slideshow.find('.active').next();
+                if ($newSlide.index() < 0) {
+                    $newSlide = $('.image').first();
+                }
+            }
 
-        slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-                              '<img src="' + img[0] + '" />' +
-                              '<div class="caption">' + img[1] + '</div>' +
-                            '</div>';
-    }
+            $slideshow.find('.active').removeClass('active').hide();
+            $newSlide.addClass('active').show();
+            return false;
+        });
 
-    // Create custom popup content
-    var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
-                            '<h2>' + feature.properties.title + '</h2>' +
-                            '<div class="slideshow">' +
-                                slideshowContent +
-                            '</div>' +
-                            '<div class="cycle">' +
-                                '<a href="#" class="prev">&laquo; Previous</a>' +
-                                '<a href="#" class="next">Next &raquo;</a>' +
-                            '</div>'
-                        '</div>';
+        // center on marker
+        // FIXME NOT WORKING
+        map.featureLayer.on('click', function(e) {
+          map.panTo(e.layer.getLatLng());
+        });
 
-    // http://leafletjs.com/reference.html#popup
-    marker.bindPopup(popupContent,{
-        closeButton: false,
-        minWidth: 320
-    });
-});
-
-// Add features to the map
-myLayer.setGeoJSON(geoJson);
-
-$('#map').on('click', '.popup .cycle a', function() {
-    var $slideshow = $('.slideshow'),
-        $newSlide;
-
-    if ($(this).hasClass('prev')) {
-        $newSlide = $slideshow.find('.active').prev();
-        if ($newSlide.index() < 0) {
-            $newSlide = $('.image').last();
-        }
-    } else {
-        $newSlide = $slideshow.find('.active').next();
-        if ($newSlide.index() < 0) {
-            $newSlide = $('.image').first();
-        }
-    }
-
-    $slideshow.find('.active').removeClass('active').hide();
-    $newSlide.addClass('active').show();
-    return false;
-});
-
-//map.setView([40, -75], 6);
-</script>
+    </script>
 
 
 </body>
