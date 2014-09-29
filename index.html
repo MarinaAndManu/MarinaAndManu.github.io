@@ -2,47 +2,30 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Slideshow gallery in a marker tooltip</title>
+<title>Interrail 2014</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' rel='stylesheet' />
+
+
+
 <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%; }
 </style>
+<link rel="stylesheet" href="popup-style.css" />
+
 </head>
+
 <body>
 
-
-
-
-
-
-<style>
-.popup {
-  text-align:center;
-  }
-.popup .slideshow .image        { display:none; }
-.popup .slideshow .image.active { display:block; }
-.popup .slideshow img {
-  width:100%;
-  }
-.popup .slideshow .caption {
-  background:#eee;
-  padding:10px;
-  }
-.popup .cycle {
-  padding:10px 0 20px;
-  }
-  .popup .cycle a.prev { float:left; }
-  .popup .cycle a.next { float:right; }
-</style>
 
 <div id='map'></div>
 <iframe width='100%' height='500px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/manutero.jjgomcin/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoibWFudXRlcm8iLCJhIjoieDJNdHdBNCJ9.BpGACwBlbWUPg62bNw9Qqg'></iframe>
 
 <!-- jQuery is required for this example. -->
 <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+<script type="text/javascript" src="geo.js"></script>
 <script>
 // Provide your access token
 L.mapbox.accessToken = 'pk.eyJ1IjoibWFudXRlcm8iLCJhIjoieDJNdHdBNCJ9.BpGACwBlbWUPg62bNw9Qqg';
@@ -50,38 +33,7 @@ var map = L.mapbox.map('map', 'manutero.jjgomcin');
 
 var myLayer = L.mapbox.featureLayer().addTo(map);
 
-var geoJson = [{
-    type: 'Feature',
-    "geometry": { "type": "Point", "coordinates": [6.976318359375,50.94804539355076]},
-    "properties": {
-        'title': 'Koln',
-        'marker-color': '#3c4e5a',
-        'marker-symbol': 'monument',
-        'marker-size': 'large',
-
-        // Store the image url and caption in an array.
-        'images': [
-          ['https://i.imgur.com/O6QEpBs.jpg','The U.S. Capitol after the burning of Washington during the War of 1812'],
-          ['https://i.imgur.com/xND1MND.jpg','Ford\'s Theatre in the 19th century, site of the 1865 assassination of President Lincoln'],
-          ['https://i.imgur.com/EKJmqui.jpg','The National Cherry Blossom Festival is celebrated around the city each spring.']
-        ]
-    }
-}, {
-    type: 'Feature',
-    "geometry": { "type": "Point", "coordinates": [-74.00, 40.71]},
-    "properties": {
-        'title': 'New York City',
-        'marker-color': '#3c4e5a',
-        'marker-symbol': 'city',
-        'marker-size': 'large',
-        'images': [
-          ['https://i.imgur.com/exemdwr.png','Peter Minuit is credited with the purchase of the island of Manhattan in 1626.'],
-          ['https://i.imgur.com/LHNDBpf.jpg','During the mid-19th Century, Broadway was extended the length of Manhattan.'],
-          ['https://i.imgur.com/Pk3DYH1.jpg','Times Square has the highest annual attendance rate of any tourist attraction in the world.']
-        ]
-
-    }
-}];
+var geoJson = getGeoJson();
 
 // Add custom popup html to each marker.
 myLayer.on('layeradd', function(e) {
@@ -148,3 +100,4 @@ $('#map').on('click', '.popup .cycle a', function() {
 
 </body>
 </html>
+
