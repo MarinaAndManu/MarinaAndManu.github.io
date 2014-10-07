@@ -5,7 +5,7 @@ function disableZoomHandlers(map) {
   if (map.tap) map.tap.disable();
 }
 
-//TODO
+// TODO
 function resetColors() {
     for (var i = 0; i < geoJson.length; i++) {
         geoJson[i].properties['marker-color'] =
@@ -17,3 +17,14 @@ function resetColors() {
 function clone(o) {
   return jQuery.extend({}, o);
 }
+
+function hideQuotes() {
+  $('#quotes').fadeTo(2000, 0.0);
+  $('#map').fadeTo(2000, 1.0);
+}
+
+function showQuotes() {
+  $('#quotes').fadeTo(2000, 1.0);
+  $('#map').fadeTo(2000, 0.3);
+}
+
