@@ -1,96 +1,182 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset=utf-8 />
     <title>Interrail 2014</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="main-style.css" />
-    <link rel="stylesheet" href="popup-style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- stylesheets -->
+    <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' />
+    <link rel='stylesheet' href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main_style.css" />
+    <link rel="stylesheet" href="css/popup_style.css" />
+
+
   </head>
 
   <body>
+    <div class='col12 pad4 contain fill-navy dark'>
 
-    <div id='map'></div>
+      <div class='center quiet'>
+        <div id='map'></div>
+        <div class="container" id='quotes'>
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-    <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
-    <script type="text/javascript" src="geo.js"></script>
+                <div class="post-preview">
+                  <h2 class="post-title">
+                    Man must explore, and this is exploration at its greatest
+                  </h2>
+                  <h3 class="post-subtitle">
+                    Problems look mighty small from 150 miles up
+                  </h3>
+                  <p class="post-meta">
+                    Posted by Start Bootstrapon September 24, 2014
+                  </p>
+                </div>
+                <hr>
+
+                <div class="post-preview">
+                  <h2 class="post-title">
+                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                  </h2>
+                  <p class="post-meta">
+                    Posted by <span>Start Bootstrap</span> on September 18, 2014
+                  </p>
+                </div>
+                <hr>
+
+                <div class="post-preview">
+                  <h2 class="post-title">
+                      Science has not yet mastered prophecy
+                  </h2>
+                  <h3 class="post-subtitle">
+                      We predict too much for the next year and yet far too little for the next ten.
+                  </h3>
+                  <p class="post-meta">
+                    Posted by <span>Start Bootstrap</span> on August 24, 2014</p>
+                </div>
+                <hr>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='col4 pad2 fill-darken1 pin-left' id='cms_bar'>
+        <div class="container-fluid" >
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/index.html">Mapa</a></li>
+            <li><a href="/quotes.html">Citas</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
     <script type="text/javascript" src="access-token.js"></script>
+    <script type="text/javascript" src="js/geo.js"></script>
+    <script type="text/javascript" src="js/aux.js"></script>
+    <script type="text/javascript" src="js/menu_mouse_over.js"></script>
 
     <script>
-        L.mapbox.accessToken = token;
-        var map = L.mapbox.map('map', 'manutero.jjgomcin');
+      L.mapbox.accessToken = token;
+      opt = {zoomControl: false};
+      var map = L.mapbox.map('map', 'manutero.jjgomcin', opt);
+      disableZoomHandlers(map);
+      var myLayer = L.mapbox.featureLayer().addTo(map);
 
-        // Add custom popup html to each marker.
-        var myLayer = L.mapbox.featureLayer().addTo(map);
-        myLayer.on('layeradd', function(e) {
-            var marker = e.layer;
-            var feature = marker.feature;
-            var images = feature.properties.images
-            var slideshowContent = '';
+      // center on marker
+      myLayer.on('click', function(e) {
+          goo = clone(e.layer.getLatLng());
+          goo["lat"] += 3;
+          map.panTo(goo);
+      });
 
-            for(var i = 0; i < images.length; i++) {
-                var img = images[i];
+      // // change color
+      // myLayer.on('click', function(e) {
+      //     resetColors();
+      //     e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
+      //     e.layer.feature.properties['marker-color'] = '#ff8888';
+      //     myLayer.setGeoJSON(geoJson);
+      // });
 
-                slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-                                      '<img src="' + img[0] + '" />' +
-                                      '<div class="caption">' + img[1] + '</div>' +
-                                    '</div>';
-            }
+      // Add custom popup html to each marker.
+      function addImages(e) {
+          var marker = e.layer;
+          var feature = marker.feature;
+          var images = feature.properties.images
+          var slideshowContent = '';
 
-            // Create custom popup content
-            var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
-                                    '<h2>' + feature.properties.title + '</h2>' +
-                                    '<div class="slideshow">' +
-                                        slideshowContent +
-                                    '</div>' +
-                                    '<div class="cycle">' +
-                                        '<a href="#" class="prev">&laquo; Previous</a>' +
-                                        '<a href="#" class="next">Next &raquo;</a>' +
-                                    '</div>'
-                                '</div>';
+          for(var i = 0; i < images.length; i++) {
+              var img = images[i];
 
-            // http://leafletjs.com/reference.html#popup
-            marker.bindPopup(popupContent,{
-                closeButton: false,
-                minWidth: 320
-            });
-        });
+              slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+                                    '<img src="' + img[0] + '" />' +
+                                    '<div class="caption">' + img[1] + '</div>' +
+                                  '</div>';
+          }
 
-        // Add features to the map
-        myLayer.setGeoJSON(geoJson);
+          // Create custom popup content
+          var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+                                  '<h2>' + feature.properties.title + '</h2>' +
+                                  '<div class="slideshow">' +
+                                      slideshowContent +
+                                  '</div>' +
+                                  '<div class="cycle">' +
+                                      '<a href="#" class="prev">&laquo; Previous</a>' +
+                                      '<a href="#" class="next">Next &raquo;</a>' +
+                                  '</div>'
+                              '</div>';
 
-        $('#map').on('click', '.popup .cycle a', function() {
-            var $slideshow = $('.slideshow'),
-                $newSlide;
+          // http://leafletjs.com/reference.html#popup
+          marker.bindPopup(popupContent,{
+              closeButton: false,
+              minWidth: 320
+          });
 
-            if ($(this).hasClass('prev')) {
-                $newSlide = $slideshow.find('.active').prev();
-                if ($newSlide.index() < 0) {
-                    $newSlide = $('.image').last();
-                }
-            } else {
-                $newSlide = $slideshow.find('.active').next();
-                if ($newSlide.index() < 0) {
-                    $newSlide = $('.image').first();
-                }
-            }
+      }
+      myLayer.on('layeradd', addImages);
 
-            $slideshow.find('.active').removeClass('active').hide();
-            $newSlide.addClass('active').show();
-            return false;
-        });
 
-        // center on marker
-        // FIXME NOT WORKING
-        map.featureLayer.on('click', function(e) {
-          map.panTo(e.layer.getLatLng());
-        });
+      // Add features to the map
+      myLayer.setGeoJSON(geoJson);
+
+
+      $('#map').on('click', '.popup .cycle a', function() {
+          var $slideshow = $('.slideshow'),
+              $newSlide;
+
+          if ($(this).hasClass('prev')) {
+              $newSlide = $slideshow.find('.active').prev();
+              if ($newSlide.index() < 0) {
+                  $newSlide = $('.image').last();
+              }
+          } else {
+              $newSlide = $slideshow.find('.active').next();
+              if ($newSlide.index() < 0) {
+                  $newSlide = $('.image').first();
+              }
+          }
+
+          $slideshow.find('.active').removeClass('active').hide();
+          $newSlide.addClass('active').show();
+          return false;
+      });
 
     </script>
 
-
-</body>
+    <!-- run function at beginning (stack overflow #4842590) -->
+    <script type="text/javascript">
+      function hideQuotes() {
+        $('#quotes').fadeTo(2000, 0.0);
+      }
+    </script>
+  </body>
 </html>
-
