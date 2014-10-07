@@ -9,67 +9,161 @@
 
     <!-- stylesheets -->
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' />
-    <link rel='stylesheet' href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/main_style.css" />
-    <link rel="stylesheet" href="css/popup_style.css" />
-
-
+    <link rel='stylesheet' href='css/bootstrap.min.css' />
+    <link rel='stylesheet' href='css/popup_style.css' />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext,cyrillic'  type='text/css' />
+    <link rel='stylesheet' href='css/main_style.css' />
   </head>
 
   <body>
     <div class='col12 pad4 contain fill-navy dark'>
-
       <div class='center quiet'>
+
+        <!-- map + quotes -->
         <div id='map'></div>
         <div class="container" id='quotes'>
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                <div class="post-preview">
+                <div class="post-preview" id="dominich_q">
                   <h2 class="post-title">
-                    Man must explore, and this is exploration at its greatest
+                    It was nice to meet you, we'll maybe meet again in Madrid! Prost!
                   </h2>
-                  <h3 class="post-subtitle">
-                    Problems look mighty small from 150 miles up
-                  </h3>
                   <p class="post-meta">
-                    Posted by Start Bootstrapon September 24, 2014
+                    <span>Dominich</span> - Köln
                   </p>
                 </div>
                 <hr>
 
-                <div class="post-preview">
+                <div class="post-preview" id="jiao_q">
                   <h2 class="post-title">
-                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                      祝旅途
                   </h2>
+                  <h3 class="post-subtitle">
+                    Wish you all the best. Nice to meet you!
+                  </h3>
                   <p class="post-meta">
-                    Posted by <span>Start Bootstrap</span> on September 18, 2014
+                    <span>JiaoPan</span> &amp; <span>Hang Lim</span> - Eindhoven
                   </p>
                 </div>
                 <hr>
 
-                <div class="post-preview">
+                <div class="post-preview" id="tale_q">
                   <h2 class="post-title">
-                      Science has not yet mastered prophecy
+                      CPEЌEH ЛAT
                   </h2>
                   <h3 class="post-subtitle">
-                      We predict too much for the next year and yet far too little for the next ten.
+                      Happy travelling
                   </h3>
                   <p class="post-meta">
-                    Posted by <span>Start Bootstrap</span> on August 24, 2014</p>
+                    <span>Tale</span> - Eindhoven
+                </div>
+                <hr>
+
+                <div class="post-preview" id="erikos_q">
+                  <h2 class="post-title">
+                      Have a nice trip
+                  </h2>
+                  <p class="post-meta">
+                    <span>Erikos</span> - Eindhoven
+                </div>
+                <hr>
+
+                <div class="post-preview" id="nehq_q">
+                  <h2 class="post-title">
+                      Had a fun time with you guys. Keep in touch
+                  </h2>
+                  <h3 class="post-subtitle">
+                      If you want to come to India do let me know!
+                  </h3>
+                  <p class="post-meta">
+                    <span>Nehg</span> - Eindhoven
+                </div>
+                <hr>
+
+                <div class="post-preview" id="nehq_q">
+                  <h2 class="post-title">
+                      Had a fun time with you guys. Keep in touch
+                  </h2>
+                  <h3 class="post-subtitle">
+                      If you want to come to India do let me know!
+                  </h3>
+                  <p class="post-meta">
+                    <span>Nehg</span> - Eindhoven
+                </div>
+                <hr>
+
+                <div class="post-preview" id="miyuki_q">
+                  <h2 class="post-title">
+                      楽しかったです。漢字テストががんばって。
+                  </h2>
+                  <h3 class="post-subtitle">
+                      It was nice to talk to you!
+                  </h3>
+                  <p class="post-meta">
+                    <span>Miyuki</span> - Füssen
+                </div>
+                <hr>
+
+                <div class="post-preview" id="carol_q">
+                  <h2 class="post-title">
+                      Tenham uma excelente viagem, venham me visitar no Brasil
+                  </h2>
+                  <p class="post-meta">
+                    <span>Carolina</span> - München
+                  </p>
+                </div>
+                <hr>
+
+                <div class="post-preview" id="cynthia_q">
+                  <h2 class="post-title">
+                      Marina y Manu fue un placer conocerlos, la próxima vez cuando vuelvan nos escriben
+                  </h2>
+                  <p class="post-meta">
+                    <span>Cynthia</span> - München
+                  </p>
+                </div>
+                <hr>
+
+                <div class="post-preview" id="tingo_q">
+                  <h2 class="post-title">
+                      Esperamos por vocês em Portugal, salut! ;)
+                  </h2>
+                  <p class="post-meta">
+                    <span>Tingo</span> - Salzburg
+                  </p>
+                </div>
+                <hr>
+
+                <div class="post-preview" id="marta_q">
+                  <h2 class="post-title">
+                      Vengham visitar OPorto! Bom citio, boa comida, e lindos paisajen com boa gente :)
+                  </h2>
+                  <p class="post-meta">
+                    <span>Marta</span> - Salzburg
+                  </p>
                 </div>
                 <hr>
 
             </div>
           </div>
         </div>
+
       </div>
 
       <div class='col4 pad2 fill-darken1 pin-left' id='cms_bar'>
         <div class="container-fluid" >
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/index.html">Mapa</a></li>
-            <li><a href="/quotes.html">Citas</a></li>
+            <li class="active">
+              <button type="button" class="btn btn-link" onclick="hideQuotes()">
+                <span class="glyphicon glyphicon-map-marker"></span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-link" onclick="showQuotes()">
+                <span class="glyphicon glyphicon-heart-empty"></span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -172,11 +266,6 @@
 
     </script>
 
-    <!-- run function at beginning (stack overflow #4842590) -->
-    <script type="text/javascript">
-      function hideQuotes() {
-        $('#quotes').fadeTo(2000, 0.0);
-      }
-    </script>
+
   </body>
 </html>
