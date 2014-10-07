@@ -1,0 +1,41 @@
+body {
+ margin:0;
+ padding:0;
+}
+
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+
+
+#cms_bar {
+    height: 500px;
+    width: 100px;
+    background-color: red;
+    position: absolute;
+    left: -100px;
+    top: 0;
+}
+
+/**
+ * When the page is loaded, the quotes must be invisible.
+ *
+ * Decided to use display:none instead of visibility:hidden because
+ * the quote's div must be OVER the map, and take no space in the layout
+ *
+ * Once the div is hidden, it's possible to show it using the js function
+ *   $('#quotes').fadeIn();
+ * or
+ *   $('#quotes').fadeTo(ms, opacity, callback);
+ *
+ * see: stack overflow #21693940 & #17630945
+ */
+#quotes {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: none;
+}
