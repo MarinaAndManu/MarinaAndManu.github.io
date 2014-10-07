@@ -21,6 +21,7 @@ function clone(o) {
 function hideQuotes() {
   $('#quotes').fadeTo(2000, 0.0);
   $('#map').fadeTo(2000, 1.0);
+  $('#quotes').hide(); // get focus on the map again
 }
 
 function showQuotes() {
