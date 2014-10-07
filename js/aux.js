@@ -19,7 +19,10 @@ function clone(o) {
 }
 
 function hideQuotes() {
-  $('#quotes').fadeTo(2000, 0.0);
+  $('#quotes').fadeTo(2000, 0.0, function() {
+    // get focus on the map again
+    $('#quotes').hide();
+  });
   $('#map').fadeTo(2000, 1.0);
 }
 
