@@ -6,25 +6,24 @@
     <title>Interrail 2014</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-    <!-- stylesheets -->
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' />
     <link rel='stylesheet' href='css/bootstrap.min.css' />
     <link rel='stylesheet' href='css/popup_style.css' />
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext,cyrillic'  type='text/css' />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext,cyrillic' />
     <link rel='stylesheet' href='css/main_style.css' />
   </head>
 
   <body>
     <div class='col12 pad4 contain fill-navy dark'>
+      <!-- center -->
       <div class='center quiet'>
-
-        <!-- map + quotes -->
         <div id='map'></div>
+
         <div class="container" id='quotes'>
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
+                <!-- dominich -->
                 <div class="post-preview" id="dominich_q">
                   <h2 class="post-title">
                     It was nice to meet you, we'll maybe meet again in Madrid! Prost!
@@ -35,6 +34,7 @@
                 </div>
                 <hr>
 
+                <!-- jiao -->
                 <div class="post-preview" id="jiao_q">
                   <h2 class="post-title">
                       祝旅途
@@ -48,6 +48,7 @@
                 </div>
                 <hr>
 
+                <!-- tale -->
                 <div class="post-preview" id="tale_q">
                   <h2 class="post-title">
                       CPEЌEH ЛAT
@@ -60,6 +61,7 @@
                 </div>
                 <hr>
 
+                <!-- erikos -->
                 <div class="post-preview" id="erikos_q">
                   <h2 class="post-title">
                       Have a nice trip
@@ -69,6 +71,7 @@
                 </div>
                 <hr>
 
+                <!-- nehq -->
                 <div class="post-preview" id="nehq_q">
                   <h2 class="post-title">
                       Had a fun time with you guys. Keep in touch
@@ -81,18 +84,7 @@
                 </div>
                 <hr>
 
-                <div class="post-preview" id="nehq_q">
-                  <h2 class="post-title">
-                      Had a fun time with you guys. Keep in touch
-                  </h2>
-                  <h3 class="post-subtitle">
-                      If you want to come to India do let me know!
-                  </h3>
-                  <p class="post-meta">
-                    <span>Nehg</span> - Eindhoven
-                </div>
-                <hr>
-
+                <!-- miyuki -->
                 <div class="post-preview" id="miyuki_q">
                   <h2 class="post-title">
                       楽しかったです。漢字テストががんばって。
@@ -105,6 +97,7 @@
                 </div>
                 <hr>
 
+                <!-- carol -->
                 <div class="post-preview" id="carol_q">
                   <h2 class="post-title">
                       Tenham uma excelente viagem, venham me visitar no Brasil
@@ -115,6 +108,7 @@
                 </div>
                 <hr>
 
+                <!-- cynthia -->
                 <div class="post-preview" id="cynthia_q">
                   <h2 class="post-title">
                       Marina y Manu fue un placer conocerlos, la próxima vez cuando vuelvan nos escriben
@@ -125,6 +119,7 @@
                 </div>
                 <hr>
 
+                <!-- tingo -->
                 <div class="post-preview" id="tingo_q">
                   <h2 class="post-title">
                       Esperamos por vocês em Portugal, salut! ;)
@@ -135,6 +130,7 @@
                 </div>
                 <hr>
 
+                <!-- marta -->
                 <div class="post-preview" id="marta_q">
                   <h2 class="post-title">
                       Vengham visitar OPorto! Bom citio, boa comida, e lindos paisajen com boa gente :)
@@ -144,13 +140,14 @@
                   </p>
                 </div>
                 <hr>
-
             </div>
           </div>
         </div>
-
+        <!-- /quotes -->
       </div>
+      <!-- /center -->
 
+      <!-- menu -->
       <div class='col4 pad2 fill-darken1 pin-left' id='cms_bar'>
         <div class="container-fluid" >
           <ul class="nav navbar-nav">
@@ -167,7 +164,7 @@
           </ul>
         </div>
       </div>
-
+      <!-- /menu -->
     </div>
 
     <!-- js -->
@@ -180,92 +177,17 @@
     <script type="text/javascript" src="js/menu_mouse_over.js"></script>
 
     <script>
-      L.mapbox.accessToken = token;
-      opt = {zoomControl: false};
-      var map = L.mapbox.map('map', 'manutero.jjgomcin', opt);
+      L.mapbox.accessToken = ACCESS_TOKEN;
+      var map = L.mapbox.map('map', 'manutero.jjgomcin', {zoomControl: false});
       disableZoomHandlers(map);
       var myLayer = L.mapbox.featureLayer().addTo(map);
-
-      // center on marker
-      myLayer.on('click', function(e) {
-          goo = clone(e.layer.getLatLng());
-          goo["lat"] += 3;
-          map.panTo(goo);
-      });
-
-      // // change color
-      // myLayer.on('click', function(e) {
-      //     resetColors();
-      //     e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
-      //     e.layer.feature.properties['marker-color'] = '#ff8888';
-      //     myLayer.setGeoJSON(geoJson);
-      // });
-
-      // Add custom popup html to each marker.
-      function addImages(e) {
-          var marker = e.layer;
-          var feature = marker.feature;
-          var images = feature.properties.images
-          var slideshowContent = '';
-
-          for(var i = 0; i < images.length; i++) {
-              var img = images[i];
-
-              slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-                                    '<img src="' + img[0] + '" />' +
-                                    '<div class="caption">' + img[1] + '</div>' +
-                                  '</div>';
-          }
-
-          // Create custom popup content
-          var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
-                                  '<h2>' + feature.properties.title + '</h2>' +
-                                  '<div class="slideshow">' +
-                                      slideshowContent +
-                                  '</div>' +
-                                  '<div class="cycle">' +
-                                      '<a href="#" class="prev">&laquo; Previous</a>' +
-                                      '<a href="#" class="next">Next &raquo;</a>' +
-                                  '</div>'
-                              '</div>';
-
-          // http://leafletjs.com/reference.html#popup
-          marker.bindPopup(popupContent,{
-              closeButton: false,
-              minWidth: 320
-          });
-
-      }
+      myLayer.on('click', centerOnMarker);
+      myLayer.on('click', changeColor);
       myLayer.on('layeradd', addImages);
-
-
-      // Add features to the map
       myLayer.setGeoJSON(geoJson);
-
-
-      $('#map').on('click', '.popup .cycle a', function() {
-          var $slideshow = $('.slideshow'),
-              $newSlide;
-
-          if ($(this).hasClass('prev')) {
-              $newSlide = $slideshow.find('.active').prev();
-              if ($newSlide.index() < 0) {
-                  $newSlide = $('.image').last();
-              }
-          } else {
-              $newSlide = $slideshow.find('.active').next();
-              if ($newSlide.index() < 0) {
-                  $newSlide = $('.image').first();
-              }
-          }
-
-          $slideshow.find('.active').removeClass('active').hide();
-          $newSlide.addClass('active').show();
-          return false;
-      });
-
+      map.featureLayer.on('ready', addLines);
+      $('#map').on('click', '.popup .cycle a', createPopUpHTML);
     </script>
-
 
   </body>
 </html>
