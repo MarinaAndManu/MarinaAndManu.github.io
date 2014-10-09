@@ -25,8 +25,14 @@
 
 .popup .cycle a.prev {
   float:left;
+  color: #3B4D59;
+  font-size: 2em;
+  text-decoration: none;
 }
 
 .popup .cycle a.next {
   float:right;
+  color: #3B4D59;
+  font-size: 2em;
+  text-decoration: none;
 }
