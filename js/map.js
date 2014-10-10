@@ -20,8 +20,11 @@ function changeColor(e) {
     geoJson[i].properties['marker-color'] =
       geoJson[i].properties['old-color'] || geoJson[i].properties['marker-color'];
   }
+  addImages(e);
   e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
   e.layer.feature.properties['marker-color'] = '#ff8888';
+  myLayer.setGeoJSON(geoJson);
+
 }
 
 // on('click') => centerOnMarker

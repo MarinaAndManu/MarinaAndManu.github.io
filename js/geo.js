@@ -50,6 +50,7 @@ const fuessen_7 =     ['https://i.imgur.com/MIxLj1F.jpg', 'the lake'];
 const fuessen_8 =     ['https://i.imgur.com/qyTtB8Z.jpg'];
 const fuessen_9 =     ['https://i.imgur.com/kq6T96E.jpg'];
 const fuessen_10 =    ['https://i.imgur.com/cANFOoH.jpg'];
+const munchen_1 =     ['http://www.bravatour.ro/wp-content/uploads/2011/03/munchen_marienplatz2.jpg']; //XXX
 const salzburg_1 =    ['https://i.imgur.com/RkKc9qB.jpg', 'Compañeros portugueses'];
 const salzburg_2 =    ['https://i.imgur.com/u1xYjgh.jpg', 'The kiss (el de verdad)'];
 const salzburg_3 =    ['https://i.imgur.com/MVDh3BH.jpg', 'El hombre arbóreo'];
@@ -79,7 +80,7 @@ const wien_1 =        ['https://i.imgur.com/ci8Phjv.jpg'];
 const wien_2 =        ['https://i.imgur.com/V1rCx6s.jpg'];
 const wien_3 =        ['https://i.imgur.com/OR2UaYp.jpg'];
 const wien_4 =        ['https://i.imgur.com/UZ3n1kk.jpg'];
-const wien_5 =        ['https://i.imgur.com/CXQsKvn.jpg'];
+const wien_5 =        ['https://i.imgur.com/CXQsKvn.jpg', 'Me encanta'];
 const wien_6 =        ['https://i.imgur.com/HpxaLAg.jpg'];
 const wien_7 =        ['https://i.imgur.com/JRavQpy.jpg'];
 const wien_8 =        ['https://i.imgur.com/UBWQWdz.jpg'];
@@ -88,11 +89,11 @@ const wien_10 =       ['https://i.imgur.com/gCxHcjL.jpg'];
 const wien_11 =       ['https://i.imgur.com/LcHVFzK.jpg'];
 const wien_12 =       ['https://i.imgur.com/w8GaLaC.jpg'];
 const wien_13 =       ['https://i.imgur.com/LlQdjg7.jpg'];
-const bratislava_1 =  ['https://i.imgur.com/8fMN2hU.jpg', 'waiting for'];
+const bratislava_1 =  ['https://i.imgur.com/8fMN2hU.jpg', 'Waiting for'];
 const bratislava_2 =  ['https://i.imgur.com/GQIZ8gN.jpg'];
 const bratislava_3 =  ['https://i.imgur.com/8aC8bXB.jpg'];
-const karlovy_1 =     ['https://i.imgur.com/kKtB8c6.jpg', 'Gabrilea'];
-const karlovy_2 =     ['https://i.imgur.com/yKP9Vcv.jpg', 'colored houses'];
+const karlovy_1 =     ['https://i.imgur.com/kKtB8c6.jpg', 'Gabrilea & Marina'];
+const karlovy_2 =     ['https://i.imgur.com/yKP9Vcv.jpg'];
 const karlovy_3 =     ['https://i.imgur.com/OlAotT6.jpg'];
 const karlovy_4 =     ['https://i.imgur.com/hyFNeWz.jpg'];
 const karlovy_5 =     ['https://i.imgur.com/frMIQHV.jpg'];
@@ -100,19 +101,19 @@ const karlovy_6 =     ['https://i.imgur.com/NIHs29W.jpg'];
 const karlovy_7 =     ['https://i.imgur.com/6YIS774.jpg'];
 const karlovy_8 =     ['https://i.imgur.com/Xoxsve7.jpg'];
 const karlovy_9 =     ['https://i.imgur.com/uStOrIW.jpg'];
-const goettingen_1 =  ['https://i.imgur.com/1CPj02q.jpg', 'the fantastic 4'];
-const goettingen_2 =  ['https://i.imgur.com/L9AV5si.jpg', 'alex'];
-const goettingen_3 =  ['https://i.imgur.com/OUvAaEk.jpg', 'fer'];
-const goettingen_4 =  ['https://i.imgur.com/SUBlA4n.jpg', 'from hell'];
+const goettingen_1 =  ['https://i.imgur.com/1CPj02q.jpg', 'Los 4 fantásticos'];
+const goettingen_2 =  ['https://i.imgur.com/L9AV5si.jpg'];
+const goettingen_3 =  ['https://i.imgur.com/OUvAaEk.jpg'];
+const goettingen_4 =  ['https://i.imgur.com/SUBlA4n.jpg', 'El lenguaje de las llamas del infierno'];
 const goettingen_6 =  ['https://i.imgur.com/WkSUbqd.jpg'];
 const goettingen_7 =  ['https://i.imgur.com/Pi6V8ou.jpg'];
-const goettingen_8 =  ['https://i.imgur.com/L5AndKG.jpg'];
-const kassel_1 =      ['https://i.imgur.com/Q4cSb79.jpg', 'hich selfhi']
-const kassel_2 =      ['https://i.imgur.com/7AsSnnY.jpg', 'herculus ass'];
+const goettingen_8 =  ['https://i.imgur.com/L5AndKG.jpg', 'subnormal nivel 100'];
+const kassel_1 =      ['https://i.imgur.com/Q4cSb79.jpg', 'desde las alturas']
+const kassel_2 =      ['https://i.imgur.com/7AsSnnY.jpg', 'El hercúelo culo'];
 const kassel_3 =      ['https://i.imgur.com/HGAOxGm.jpg'];
 const kassel_4 =      ['https://i.imgur.com/RsLR1lt.jpg'];
-const kassel_5 =  ['https://i.imgur.com/m5NLKZs.jpg'];
-const hamburg_1 =     ['https://i.imgur.com/EjBquvv.jpg'];
+const kassel_5 =      ['https://i.imgur.com/m5NLKZs.jpg'];
+const hamburg_1 =     ['https://i.imgur.com/EjBquvv.jpg', 'Banderas de todos los conocidos'];
 const hamburg_2 =     ['https://i.imgur.com/zinPc8H.png'];
 const hamburg_3 =     ['https://i.imgur.com/VYskMAe.jpg'];
 const hamburg_4 =     ['https://i.imgur.com/aVpzQ6C.jpg'];
@@ -132,6 +133,8 @@ const nueremberg_imgs =
   [nueremberg_1, nueremberg_2, nueremberg_3, nueremberg_4];
 const fuessen_imgs =
   [fuessen_1, fuessen_2, fuessen_3, fuessen_4, fuessen_5, fuessen_6, fuessen_7, fuessen_8, fuessen_9, fuessen_10];
+const munchen_imgs =
+  [munchen_1];
 const salzburg_imgs =
   [salzburg_1, salzburg_2, salzburg_3, salzburg_4, salzburg_5, salzburg_6, salzburg_7, salzburg_8, salzburg_9, salzburg_10, salzburg_11, salzburg_12, salzburg_13];
 const brno_imgs =
@@ -215,13 +218,25 @@ var geoJson = [
     }
   },
   {
+    // Munchen
+    type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": munchen_geo },
+    "properties": {
+        'title': 'Munchen',
+        'marker-color': MARKER_COLOR,
+        'marker-symbol': 'city',
+        'marker-size': 'medium',
+        'images': munchen_imgs,
+    }
+  },
+  {
     // Salzburg
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates": salzburg_geo },
     "properties": {
         'title': 'Salzburg',
         'marker-color': MARKER_COLOR,
-        'marker-symbol': 'music',
+        'marker-symbol': 'garden',
         'marker-size': 'large',
         'images': salzburg_imgs
     }
@@ -245,7 +260,7 @@ var geoJson = [
     "properties": {
         'title': 'Wien',
         'marker-color': MARKER_COLOR,
-        'marker-symbol': 'monument',
+        'marker-symbol': 'theatre',
         'marker-size': 'large',
         'images': wien_imgs
     }
@@ -257,7 +272,7 @@ var geoJson = [
     "properties": {
         'title': 'Bratislava',
         'marker-color': MARKER_COLOR,
-        'marker-symbol': 'bakery',
+        'marker-symbol': 'pitch',
         'marker-size': 'medium',
         'images': bratislava_imgs
     }
@@ -269,7 +284,7 @@ var geoJson = [
     "properties": {
         'title': 'Karlovy Vary',
         'marker-color': MARKER_COLOR,
-        'marker-symbol': 'park',
+        'marker-symbol': 'rail-metro',
         'marker-size': 'large',
         'images': karlovy_imgs
     }
