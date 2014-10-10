@@ -5,19 +5,27 @@
  * Light grey       => #9DA6AC
  * Yellow - orange  => #EEB63A
  */
+
+/**
+ * The four main html components to consider are
+ *   1) map
+ *   2) cms_bar
+ *   3) quotes
+ *   4) pop ups (images)
+ */
+
 body {
- margin:0;
- padding:0;
+ margin: 0;
+ padding: 0;
  font-family: 'Lobster', cursive;
 }
 
 #map {
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
-
 
 #cms_bar {
     height: 240px;
@@ -26,10 +34,6 @@ body {
     position: absolute;
     left: -80px;
     top: 100px;
-}
-
-span {
-  color: #9DA6AC;
 }
 
 /**
@@ -46,9 +50,13 @@ span {
   outline: none;
 }
 
-/** 13544114 */
+/**
+ * Make bigger bootstrap's icons
+ * See: stack overflow #13544114
+ */
 span.glyphicon {
-  padding-top: 1em;
+  color: #9DA6AC;
+  margin-top: 1em;
   font-size: 3em;
 }
 
@@ -69,5 +77,47 @@ span.glyphicon {
     position: absolute;
     top: 0;
     width: 100%;
+    height: 600px;
     display: none;
+    overflow-y : auto;
+}
+
+/* author of the quote */
+span {
+  color: #EEB63A;
+  font-size: 1.7em;
+}
+
+/* Pop ups */
+
+.popup {
+  text-align: center;
+}
+.popup .slideshow .image {
+  display: none;
+}
+.popup .slideshow .image.active {
+  display: block;
+}
+.popup .slideshow img {
+  width: 100%;
+}
+.popup .slideshow .caption {
+  background: #eee;
+  padding: 10px;
+}
+.popup .cycle {
+  padding: 10px 0 20px;
+}
+.popup .cycle a.prev {
+  float: left;
+  color: #3B4D59;
+  font-size: 2em;
+  text-decoration: none;
+}
+.popup .cycle a.next {
+  float: right;
+  color: #3B4D59;
+  font-size: 2em;
+  text-decoration: none;
 }
