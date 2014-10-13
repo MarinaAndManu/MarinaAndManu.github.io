@@ -294,7 +294,7 @@ var geoJson = [
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates": goettingen_geo },
     "properties": {
-        'title': 'Goëttingen',
+        'title': 'Göttingen',
         'marker-color': MARKER_COLOR,
         'marker-symbol': 'college',
         'marker-size': 'large',
